@@ -1,0 +1,7 @@
+# Add in the extra index for installing torch, torchvision, and torchaudio with GPU support
+# Only applies to windows.
+--extra-index-url https://download.pytorch.org/whl/cu117
+torch 
+torchvision 
+torchaudio
+-r requirements.txt
