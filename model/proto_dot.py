@@ -18,7 +18,8 @@ class ProtoDot(nn.Module):
         self.max_len = max_len
         
         self.encoder = encoder
-        self.encoder = nn.DataParallel(self.encoder)
+        # This was throwing a CUDA error. Get this working on the GPU VM
+        # self.encoder = nn.DataParallel(self.encoder)
         
         self.cost = nn.CrossEntropyLoss(reduction="none")
         

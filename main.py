@@ -64,7 +64,7 @@ def main():
     parser.add_argument('--optimizer', default=config.optimizer, type=str, 
                         help='sgd or adam or adamw')
     parser.add_argument('--learning_rate', default=config.learning_rate, type=float, 
-                        help='learnint rate')
+                        help='learning rate')
     parser.add_argument('--warmup_step', default=config.warmup_step, type=int, 
                         help='warmup step of bert')
     parser.add_argument('--scheduler_step', default=config.scheduler_step, type=int, 
