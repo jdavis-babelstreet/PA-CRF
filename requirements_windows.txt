@@ -1,7 +1,8 @@
 # Add in the extra index for installing torch, torchvision, and torchaudio with GPU support
-# Only applies to windows.
+# Torch recently changed the default version to 2.0. As such we need to supply the
+# version of the package when installing.
 --extra-index-url https://download.pytorch.org/whl/cu117
-torch 
-torchvision 
-torchaudio
+torch==1.13.1+cu117
+torchvision==0.14.1+cu117
+torchaudio==0.13.1
 -r requirements.txt
