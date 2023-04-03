@@ -1,0 +1,10 @@
+CUDA error was being generated because of the following lines in the following files:
+I have a note on each line as to what I changed. I'm changing them back for now to see if it
+throws the error on the GPU machine.
+
+/model/proto_dot.py Line 22.
+    Was commented out. Uncommenting to test on the GPU box.
+
+/config.py Line 42-43.
+    Was testing on the CPU on local. Using None for the device enables GPU
+

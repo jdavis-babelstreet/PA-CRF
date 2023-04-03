@@ -39,7 +39,8 @@ ckpt_dir = "checkpoint/"
 load_ckpt = None
 save_ckpt = None
 
-device = 'cpu'  # Use None to enable the GPU
+device = None
+# device = 'cpu'  # Use None to enable the GPU
 test=False
 
 notes=""
