@@ -6,8 +6,8 @@ dataset = "fewevent"
 encoder_path = 'bert-base-uncased'
 
 # model settings 
-# model = "pa_crf"
-model = "proto_dot"
+model = "pa_crf"
+#model = "proto_dot"
 
 sample_num = 5
 
@@ -36,11 +36,11 @@ eval_step = 500
 test_epoch = 3000
 
 ckpt_dir = "checkpoint/"
-load_ckpt = None
+load_ckpt = "pa_crf_fewevent_5_5_20230404_143736"
 save_ckpt = None
 
 device = None
 # device = 'cpu'  # Use None to enable the GPU
-test=False
+test=True
 
 notes=""
