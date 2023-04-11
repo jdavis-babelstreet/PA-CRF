@@ -120,11 +120,17 @@ def main():
                                                str(opt.K),
                                                time.strftime('%Y%m%d_%H%M%S') + ".ckpt"]))
         print(f"Save checkpoint : {opt.save_ckpt}")
+        results_file_path = os.path.splitext(opt.save_ckpt)[0] + '.txt'
     else:
         opt.save_ckpt = os.path.join(opt.ckpt_dir, opt.save_ckpt + ".ckpt")
+        results_file_path = opt.save_ckpt + '.txt'
+
+    print('Results file path: ', results_file_path)
         
     if opt.load_ckpt is not None:
+        results_file_path = os.path.join(opt.ckpt_dir, opt.load_ckpt + '.txt')
         opt.load_ckpt = os.path.join(opt.ckpt_dir, opt.load_ckpt + ".ckpt")
+    print('Results file path: ', results_file_path)
     
     if opt.device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -205,7 +211,9 @@ def main():
                           device=device,
                           opt=opt)
     # train
+    training_time = None
     if not opt.test:
+        train_start = time.time()
         framework.train(model,
                         opt.trainN, opt.evalN, opt.K, opt.Q,
                         optimizer,
@@ -215,17 +223,34 @@ def main():
                         opt.eval_step,
                         load_ckpt=opt.load_ckpt,
                         save_ckpt=opt.save_ckpt)
+        train_end = time.time()
+        training_time = (train_end - train_start) / 60.0
+        print(f'Training completed in {training_time} minutes')
         checkpoint = opt.save_ckpt
     else:
         checkpoint = opt.load_ckpt
     
     # test
+    eval_start = time.time()
     P, R, F1 = framework.evaluate(model, 
                                   opt.test_epoch, 
                                   opt.evalN, opt.K, opt.Q,
                                   mode="test",
                                   load_ckpt=checkpoint)
+    eval_end = time.time()
+    eval_time = (eval_end - eval_start) / 60.0
+    print(f"Evaluation completed in {eval_time} minutes")
     print(f"Test result - P : {P:.6f}, R : {R:.6f}, F1 : {F1:.6f}")
+
+    # Write the results to file
+    with open(results_file_path, 'w') as f:
+        f.write(f'Train N: {opt.trainN}\tEval N: {opt.evalN}\tK: {opt.K}\tQ: {opt.Q}\n')
+        if training_time is not None:
+            f.write(f'Training Epochs: {opt.train_epoch}\n')
+            f.write(f'Training Time: {training_time} minutes\n')
+        f.write(f'Evaluation Time: {eval_time} minutes\n')
+        f.write(f'Precision: {P}\tRecall: {R}\tF1: {F1}\n')
+        f.write(f'Experiment notes: {opt.notes}\n')
     
     # finish
     print("Hyperparameters :", opt)
