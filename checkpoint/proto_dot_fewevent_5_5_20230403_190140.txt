@@ -1,0 +1,4 @@
+Train N: 5	Eval N: 5	K: 5	Q: 1
+Evaluation Time: 11.82792538801829 minutes
+Precision: 0.45712295652886464	Recall: 0.7443458536259924	F1: 0.5664026804751752
+Experiment notes: 
