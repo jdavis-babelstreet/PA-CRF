@@ -237,7 +237,7 @@ def main():
                                   mode="test",
                                   load_ckpt=checkpoint)
 
-    print(f"Evaluation completed in {eval_time} minutes")
+    print(f"Evaluation completed in {eval_time} seconds")
     print(f"Test result - P : {P:.6f}, R : {R:.6f}, F1 : {F1:.6f}")
 
     # Write the results to file
