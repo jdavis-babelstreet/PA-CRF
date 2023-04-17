@@ -231,14 +231,12 @@ def main():
         checkpoint = opt.load_ckpt
     
     # test
-    eval_start = time.time()
-    P, R, F1 = framework.evaluate(model, 
+    P, R, F1, eval_time = framework.evaluate(model,
                                   opt.test_epoch, 
                                   opt.evalN, opt.K, opt.Q,
                                   mode="test",
                                   load_ckpt=checkpoint)
-    eval_end = time.time()
-    eval_time = (eval_end - eval_start) / 60.0
+
     print(f"Evaluation completed in {eval_time} minutes")
     print(f"Test result - P : {P:.6f}, R : {R:.6f}, F1 : {F1:.6f}")
 
@@ -255,6 +253,7 @@ def main():
     # finish
     print("Hyperparameters :", opt)
     print("Experiment notes :", opt.notes)
+
 
 if __name__ == "__main__":
     main()

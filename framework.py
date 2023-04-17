@@ -74,7 +74,8 @@ class Framework:
             eval_dataset = self.test_dataset
         elif mode == "train":
             eval_dataset = self.train_dataset
-        
+
+        eval_start = time.perf_counter()
         model.eval()        
         for i in range(eval_epoch):
             support_set, query_set, id2label = next(eval_dataset)
@@ -82,8 +83,10 @@ class Framework:
             loss, logits, pred = model(support_set, query_set, evalN, K, Q)
             
             self.metric.update_state(pred, query_set['trigger_label'], id2label)
+        eval_end = time.perf_counter()
+        eval_time = (eval_end - eval_start)
             
-        return self.metric.result()
+        return self.metric.result(), eval_time
     
     def train(self, 
               model,
