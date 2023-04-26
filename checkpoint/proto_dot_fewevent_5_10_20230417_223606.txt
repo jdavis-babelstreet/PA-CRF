@@ -1,0 +1,6 @@
+Train N: 5	Eval N: 5	K: 10	Q: 1
+Training Epochs: 20000
+Training Time: 714.4157899187667 minutes
+Evaluation Time: 1325.0976380409993 minutes
+Precision: 0.5018671589812445	Recall: 0.7979851891387018	F1: 0.616197001700067
+Experiment notes: 

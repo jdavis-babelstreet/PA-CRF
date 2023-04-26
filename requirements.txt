@@ -1,3 +1,7 @@
 transformers
 numpy 
 pandas
+jupyter
+seaborn
+matplotlib
+scikit-learn
