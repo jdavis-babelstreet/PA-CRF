@@ -57,7 +57,6 @@ def main():
                         help='batch size')
     parser.add_argument('--num_workers', default=config.num_workers, type=int, 
                         help='number of worker in dataloader')
-    
 
     parser.add_argument('--dropout', default=config.dropout, type=float, 
                         help='dropout rate')
