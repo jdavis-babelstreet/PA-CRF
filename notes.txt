@@ -8,3 +8,10 @@ throws the error on the GPU machine.
 /config.py Line 42-43.
     Was testing on the CPU on local. Using None for the device enables GPU
 
+TODO:
+    Change the scripts to remove the CUDA error above
+    Run the code in evaluate mode, run a batch of data through each model and examine the output
+    Create an "inference model" for pdot and pacrf that will take in a single data point (or batch) and will generate
+    all events and triggers in the samples.
+        Instead of having to pass in the query and support sets
+    Retrain the PACRF model to see if the trend holds where the F1 decreases with more K 
